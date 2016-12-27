@@ -1,22 +1,18 @@
 PROJECT=cpp_example
 
 CXX=g++
-#CFLAGS=-O2 -Wall `pkg-config --cflags python` -fPIC
-CXXFLAGS=-O2 -Wall -I/usr/lib/pypy/include/ -fpic
+CXXFLAGS=-O2 -Wall -I/usr/include/luajit-2.0/ -fpic
 LDFLAGS=-shared -s
 
 OBJS=$(PROJECT)_wrap.o $(PROJECT).o
-#TARGET=../_$(PROJECT).so
-TARGET=_$(PROJECT).pypy-41-arm-linux-gnueabihf.so
-
-%.py: %.i
-	swig -c++ -python $<
+TARGET=$(PROJECT).so
 
 %.o: %.cxx
 	$(CXX) $(CXXFLAGS) -c $<
 
-all: $(PROJECT).py
-	make sofile
+all:
+	swig -c++ -lua $(PROJECT).i
+	make sofile -f Makefile-LUAjit
 
 sofile: $(OBJS)
 	$(CXX) $(LDFLAGS) $(OBJS) -o $(TARGET)

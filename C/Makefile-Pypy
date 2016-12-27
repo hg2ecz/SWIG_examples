@@ -6,14 +6,14 @@ CFLAGS=-O2 -Wall -I/usr/lib/pypy/include/ -fpic
 LDFLAGS=-shared -s
 
 OBJS=$(PROJECT)_wrap.o $(PROJECT).o
-#TARGET=../_$(PROJECT).so
+#TARGET=_$(PROJECT).so
 TARGET=_$(PROJECT).pypy-41-arm-linux-gnueabihf.so
 
 %.py: %.i
 	swig -python $<
 
 all: $(PROJECT).py
-	make sofile
+	make sofile -f Makefile-Pypy
 
 sofile: $(OBJS)
 	$(CC) $(LDFLAGS) $(OBJS) -o $(TARGET)
