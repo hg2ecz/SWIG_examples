@@ -3,7 +3,7 @@
 function main()
     local ffi = require ('ffi')
     ffi.cdef[[
-        int Example(char *s);
+        int Example(const char *s);
         char *Get(int id);
     ]]
 

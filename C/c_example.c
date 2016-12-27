@@ -9,7 +9,7 @@ static int id=0; // példányosításhoz
 static int st_counter[NUM];
 static char st_s[NUM][200];
 
-int Example(char *s) {
+int Example(const char *s) {
     st_counter[id]=0;
     strncpy(st_s[id], s, sizeof(st_s[id]));
     return id++;

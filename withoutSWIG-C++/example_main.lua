@@ -4,7 +4,7 @@ function main()
     local ffi = require ('ffi')
     ffi.cdef[[
         typedef struct Example Example;
-        Example *Example_Example(char *s);
+        Example *Example_Example(const char *s);
         char *Example__gc(Example *);
         char *Example_Get(Example *);
     ]]

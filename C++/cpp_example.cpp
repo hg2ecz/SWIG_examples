@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Example :: Example(char *s) {
+Example :: Example(const char *s) {
     strncpy(this->s, s, sizeof(this->s));
 }
 

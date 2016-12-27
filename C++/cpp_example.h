@@ -1,6 +1,6 @@
 class Example {
     public:
-	Example(char *s);
+	Example(const char *s);
 	char *Get();
     private:
 	char s[200];
