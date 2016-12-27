@@ -1,5 +1,4 @@
 #include "cpp_example.h"
-#include "stdio.h"
 
 extern "C" {
   Example *Example_Example(const char *s) { return new Example(s); }
