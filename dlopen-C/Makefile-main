@@ -1,0 +1,12 @@
+CC=gcc
+CFLAGS=-O2 -Wall
+LDFLAGS=-s -ldl
+
+OBJS=example_main.o
+TARGET=example_main
+
+all: $(OBJS)
+	$(CC) $(LDFLAGS) $(OBJS) -o $(TARGET)
+
+clean:
+	rm -f $(OBJS) $(TARGET)
