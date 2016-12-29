@@ -12,6 +12,9 @@ if __name__ == '__main__':
 
         def Get(self, *arg):
             return ctypes.c_char_p(cpp_example.Example_Get(self.obj, *arg)).value
+
+        def __del__(self):
+            cpp_example.Example__gc(self.obj)
     # end of wrap
 
     a = Example('teszt-A')

@@ -5,13 +5,15 @@ using namespace std;
 
 // wrap into class like behavior
 class Example;
-static Example *(*Example_Example)(const char *s); // function from .so
-static char    *(*Example_Get    )(Example *obj);  // function from .so
+static Example *(*Example_Example)(const char *s); // function from .so --> constructor as func
+static void     (*Example__gc    )(Example *obj);  // function from .so --> descructor as func
+static char    *(*Example_Get    )(Example *obj);  // function from .so --> example method as func
 
 
 class Example {
     public:
 	Example(const char *s) { this->obj = Example_Example(s); }
+	~Example()             { Example__gc(this->obj);         };
 	char *Get()            { return Example_Get(this->obj);  };
     private:
 	Example *obj;
@@ -28,6 +30,7 @@ int main() {
     }
     dlerror();
     Example_Example = (Example* (*)(const char*)) dlsym(cpp_example, "Example_Example");
+    Example__gc     = (void     (*)(Example   *)) dlsym(cpp_example, "Example__gc");
     Example_Get     = (char   * (*)(Example   *)) dlsym(cpp_example, "Example_Get");
     // end of function loading
 
