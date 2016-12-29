@@ -3,26 +3,24 @@
 function main()
     local ffi = require ('ffi')
     ffi.cdef[[
-        typedef struct Example Example;
-        Example *Example_Example(const char *s);
-        char *Example__gc(Example *);
-        char *Example_Get(Example *);
+        int Example(const char *s);
+        char *Get(int id);
     ]]
 
-    local cpp_example = ffi.load('./cpp_example.so')
+    local c_example = ffi.load('./c_example.so')
 
     -- wrap into class like behavior
     local mt = {}
     mt.__index = mt
 
     function Example(...)
-        local self = {super = cpp_example.Example_Example(...)}
-        ffi.gc(self.super, cpp_example.Example__gc)
+        local self = {super = c_example.Example(...)}
+        -- ffi.gc(self.super, c_example.Example_close) -- if we have close() or free()
         return setmetatable(self, mt)
     end
 
     function mt.Get(self, ...)
-        return ffi.string(cpp_example.Example_Get(self.super, ...))
+        return ffi.string(c_example.Get(self.super))
     end
     -- end of wrap
 
