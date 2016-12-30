@@ -14,3 +14,5 @@ char *Example :: Get() {
     sprintf(s, "%2d %s", this->counter++, this->s);
     return s;
 }
+
+Example :: ~Example() { }

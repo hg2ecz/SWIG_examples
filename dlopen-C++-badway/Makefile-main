@@ -1,0 +1,12 @@
+CXX=g++
+CXXFLAGS=-O2 -Wall
+LDFLAGS=-s -lstdc++ -ldl
+
+OBJS=example_main.o
+TARGET=example_main
+
+all: $(OBJS)
+	$(CC) $(LDFLAGS) $(OBJS) -o $(TARGET)
+
+clean:
+	rm -f $(OBJS) $(TARGET)

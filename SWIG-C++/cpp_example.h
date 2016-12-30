@@ -1,7 +1,8 @@
 class Example {
     public:
 	Example(const char *s);
-	char *Get();
+	virtual char *Get();
+	virtual ~Example();
     private:
 	char s[200];
 	int counter=0;
