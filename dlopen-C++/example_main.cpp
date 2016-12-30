@@ -44,5 +44,7 @@ int main() {
     printf("%s\n", a->Get());
     printf("%s\n", a->Get());
     printf("%s\n", b->Get());
+
+    dlclose(cpp_example);
     return 0;
 }

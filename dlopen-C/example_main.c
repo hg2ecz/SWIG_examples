@@ -31,5 +31,7 @@ int main() {
     printf("%s\n", Get(a));
     printf("%s\n", Get(a));
     printf("%s\n", Get(b));
+
+    dlclose(c_example);
     return 0;
 }
