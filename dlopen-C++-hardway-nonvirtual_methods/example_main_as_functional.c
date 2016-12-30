@@ -1,17 +1,15 @@
-#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 #include <dlfcn.h>
 
-#include "cpp_example.h"
-using namespace std;
-
 // wrap into functional like behavior
-static Example *(*Example_Example)(const char *s);
-static void     (*Example__gc    )(Example *obj);  // function from .so --> descructor as func
-static char    *(*Example_Get    )(Example *obj);  // function from .so --> example method as func
+static void *(*Example_Example)(const char *s);
+static void     (*Example__gc    )(void *obj);  // function from .so --> descructor as func
+static char    *(*Example_Get    )(void *obj);  // function from .so --> example method as func
 
 #define MAXID 10
 static int Examplevec_id=0;
-static Example *Examplevec[MAXID];
+static void *Examplevec[MAXID];
 
 int ExampleOpen(const char *s) {
     if (Examplevec_id >= 10) return -1;
@@ -30,16 +28,16 @@ void ExampleClose(int id) {
 
 int main() {
     // -----> cpp_example_c_wrapper.cpp
-    static void *cpp_example = dlopen("./cpp_example.so", RTLD_LAZY);
+    void *cpp_example = dlopen("./cpp_example.so", RTLD_LAZY);
     if (!cpp_example) {
-	cerr << dlerror() << endl;
+	fprintf(stderr, "%s\n", dlerror());
 	exit(EXIT_FAILURE);
     }
     dlerror();
 
-    Example_Example = (Example* (*)(const char*)) dlsym(cpp_example, "Example_Example");
-    Example_Get     = (char*    (*)(Example *))   dlsym(cpp_example, "Example_Get");
-    Example__gc     = (void     (*)(Example *))   dlsym(cpp_example, "Example__gc");
+    Example_Example = (void* (*)(const char*)) dlsym(cpp_example, "Example_Example");
+    Example_Get     = (char*    (*)(void *))   dlsym(cpp_example, "Example_Get");
+    Example__gc     = (void     (*)(void *))   dlsym(cpp_example, "Example__gc");
     // end of function loading
 
 
