@@ -8,7 +8,6 @@ namespace CExample
         [DllImport("./c_example.so", EntryPoint="Example")]
         public static extern int Example(string str);
 
-
         [DllImport("./c_example.so", EntryPoint="Get")]
         public static extern IntPtr Get(int x);
     }
@@ -70,7 +69,7 @@ namespace CExample
                 }
 
                 // Dispose unmanaged (native) objects
-		disposed = true;
+                disposed = true;
                 GC.SuppressFinalize(this);
             }
         }
@@ -78,4 +77,3 @@ namespace CExample
         #endregion
     }
 }
-
