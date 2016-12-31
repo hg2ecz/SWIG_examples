@@ -1,19 +1,18 @@
 PROJECT=c_example
 
 CC=gcc
-#CFLAGS=-O2 -Wall `pkg-config --cflags python` -fpic
 CFLAGS=-O2 -Wall -fpic
 LDFLAGS=-shared -s
 
-OBJS=$(PROJECT).o
-TARGET=$(PROJECT).so
-#TARGET=_$(PROJECT).pypy-41-arm-linux-gnueabihf.so
+OBJS=$(PROJECT)_wrap.o $(PROJECT).o
+TARGET=lib$(PROJECT).so
+PROG=example_main_as_class.exe
 
 %.cs: %.i
 	swig -csharp $<
 
-
-all:    #$(PROJECT).cs
+all:
+	swig -csharp $(PROJECT).i
 	make sofile -f Makefile-CSharp
 	make main -f Makefile-CSharp
 
@@ -21,7 +20,7 @@ sofile: $(OBJS)
 	$(CC) $(LDFLAGS) $(OBJS) -o $(TARGET)
 
 main:
-	mcs -out:$(PROJECT).exe example_main_as_class.cs 
+	mcs -out:$(PROG) example_main_as_class.cs $(PROJECT).cs $(PROJECT)PINVOKE.cs
 
 clean:
-	rm -f $(OBJS) $(PROJECT)_wrap.c $(PROJECT).py ../$(PROJECT).py $(TARGET) $(PROJECT).exe
+	rm -f $(OBJS) $(PROJECT)_wrap.c $(TARGET) $(PROJECT)PINVOKE.cs $(PROJECT).cs $(PROG)

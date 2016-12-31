@@ -7,3 +7,4 @@ clean:
 	make -f Makefile-LUAjit clean
 	make -f Makefile-Pypy   clean
 	rm -rf __pycache__
+	make -f Makefile-CSharp clean

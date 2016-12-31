@@ -1,0 +1,7 @@
+PROG=example_main_as_csharp.exe
+
+all:
+	mcs -out:$(TARGET) example_main_as_class.cs
+
+clean:
+	rm -f $(PROG)
