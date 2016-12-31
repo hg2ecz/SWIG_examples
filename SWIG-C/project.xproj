@@ -1,0 +1,18 @@
+<Project DefaultTargets = "Compile" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+    <!-- Set the application name as a property -->
+    <PropertyGroup>
+        <appname>c_example</appname>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <CsFile Include = "example_main_as_class.cs"/>
+        <CFile Include = "$(appname).c"/>
+    </ItemGroup>
+
+    <Target Name = "Compile">    
+        <Message Text="Building shared library $(appname).so"/>
+	<Exec Command="gcc -Wall -O2 -shared -fPIC -o $(appname).so @(CFile)" />
+	<CSC Sources="@(CsFile)" OutputAssembly="$(appname).exe" EmitDebugInformation="true" />
+        <Message Text="Done."/>
+    </Target>
+</Project>
