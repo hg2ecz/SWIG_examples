@@ -13,8 +13,8 @@ PROG=example_main_as_class.exe
 
 all:
 	swig -csharp $(PROJECT).i
-	make sofile -f Makefile-CSharp
-	make main -f Makefile-CSharp
+	make sofile -f Makefile-CSharp_as_class
+	make main -f Makefile-CSharp_as_class
 
 sofile: $(OBJS)
 	$(CC) $(LDFLAGS) $(OBJS) -o $(TARGET)
