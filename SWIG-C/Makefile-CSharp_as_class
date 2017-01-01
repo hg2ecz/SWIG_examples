@@ -6,7 +6,7 @@ LDFLAGS=-shared -s
 
 OBJS=$(PROJECT)_wrap.o $(PROJECT).o
 TARGET=lib$(PROJECT).so
-PROG=example_main.exe
+PROG=example_main_as_class.exe
 
 %.cs: %.i
 	swig -csharp $<
@@ -20,7 +20,7 @@ sofile: $(OBJS)
 	$(CC) $(LDFLAGS) $(OBJS) -o $(TARGET)
 
 main:
-	mcs -out:$(PROG) example_main.cs $(PROJECT).cs $(PROJECT)PINVOKE.cs
+	mcs -out:$(PROG) example_main_as_class.cs $(PROJECT).cs $(PROJECT)PINVOKE.cs
 
 clean:
 	rm -f $(OBJS) $(PROJECT)_wrap.c $(TARGET) $(PROJECT)PINVOKE.cs $(PROJECT).cs $(PROG)
