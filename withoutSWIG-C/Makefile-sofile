@@ -1,0 +1,14 @@
+PROJECT=c_example
+
+CC=gcc
+CFLAGS=-O2 -Wall -fpic
+LDFLAGS=-shared -s
+
+OBJS=$(PROJECT).o
+TARGET=$(PROJECT).so
+
+all: $(OBJS)
+	$(CC) $(LDFLAGS) $(OBJS) -o $(TARGET)
+
+clean:
+	rm -f $(OBJS) $(TARGET)

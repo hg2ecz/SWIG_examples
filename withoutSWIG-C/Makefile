@@ -1,14 +1,12 @@
-PROJECT=c_example
+all:
+	make -f Makefile-sofile
+	rm -f c_example.o
 
-CC=gcc
-CFLAGS=-O2 -Wall -fpic
-LDFLAGS=-shared -s
-
-OBJS=$(PROJECT).o
-TARGET=$(PROJECT).so
-
-all: $(OBJS)
-	$(CC) $(LDFLAGS) $(OBJS) -o $(TARGET)
+	make -f Makefile-CSharp
+	make -f Makefile-CSharp_as_class
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	make -f Makefile-sofile clean
+
+	make -f Makefile-CSharp clean
+	make -f Makefile-CSharp_as_class clean
