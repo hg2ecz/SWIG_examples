@@ -1,0 +1,27 @@
+PROJECT=cpp_example
+
+CXX=g++
+CXXFLAGS=-O2 -Wall -fpic
+LDFLAGS=-shared -s
+
+OBJS=$(PROJECT)_wrap.o $(PROJECT).o
+TARGET=lib$(PROJECT).so
+PROG=example_main.exe
+
+%.o: %.cxx
+	$(CXX) $(CXXFLAGS) -c $<
+
+all:
+	swig -c++ -csharp $(PROJECT).i
+	make sofile -f Makefile-CSharp
+	make main -f Makefile-CSharp
+
+sofile: $(OBJS)
+	$(CXX) $(LDFLAGS) $(OBJS) -o $(TARGET)
+
+
+main:
+	mcs -out:$(PROG) example_main.cs Example.cs $(PROJECT).cs $(PROJECT)PINVOKE.cs
+
+clean:
+	rm -f $(OBJS) $(PROJECT)_wrap.cxx Example.cs $(TARGET) $(PROJECT)PINVOKE.cs $(PROJECT).cs $(PROG)
