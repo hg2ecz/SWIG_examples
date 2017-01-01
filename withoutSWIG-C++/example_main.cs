@@ -8,6 +8,9 @@ namespace CExample
         [DllImport("./cpp_example.so", EntryPoint="Example_Example")]
         public static extern int Example(string str);
 
+        [DllImport("./cpp_example.so", EntryPoint="Example__gc")]
+        public static extern IntPtr GC(int x);
+
         [DllImport("./cpp_example.so", EntryPoint="Example_Get")]
         public static extern IntPtr Get(int x);
     }
@@ -34,7 +37,7 @@ namespace CExample
     {
         private int exampleHandler;
         private bool disposed;
-	
+
         public ExampleWrapper(string jarg)
         {
             Console.WriteLine("ST Example: " + jarg);
@@ -56,6 +59,7 @@ namespace CExample
         public void Dispose()
         {
             Console.WriteLine("ST Dispose: " + this.exampleHandler);
+            ExampleHelper.GC(exampleHandler);
             Dispose(true);
         }
 
