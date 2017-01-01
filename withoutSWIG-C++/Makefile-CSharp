@@ -1,0 +1,7 @@
+PROG=example_main.exe
+
+all:
+	mcs -out:$(PROG) example_main.cs
+
+clean:
+	rm -f $(PROG)
