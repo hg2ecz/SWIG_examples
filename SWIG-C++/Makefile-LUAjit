@@ -1,7 +1,7 @@
 PROJECT=cpp_example
 
 CXX=g++
-CXXFLAGS=-O2 -Wall -I/usr/include/luajit-2.0/ -fpic
+CXXFLAGS=-O2 -Wall `pkg-config --cflags luajit` -fpic
 LDFLAGS=-shared -s
 
 OBJS=$(PROJECT)_wrap.o $(PROJECT).o
