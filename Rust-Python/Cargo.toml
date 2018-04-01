@@ -1,0 +1,12 @@
+[package]
+name = "rust_example"
+version = "0.1.0"
+authors = ["Zsolt Krüpl <hg2ecz@ham.hu>"]
+
+[lib]
+name = "rust_example"
+crate-type = ["dylib"]
+
+[dependencies.cpython]
+version = "0.2.*"
+features = ["extension-module"]
