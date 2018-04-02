@@ -7,6 +7,13 @@ authors = ["Zsolt Krüpl <hg2ecz@ham.hu>"]
 name = "rust_example"
 crate-type = ["dylib"]
 
+
 [dependencies.cpython]
 version = "0.2.*"
+
+# Python3
 features = ["extension-module"]
+
+# Python2
+#default-features = false
+#features = ["python27-sys"]
