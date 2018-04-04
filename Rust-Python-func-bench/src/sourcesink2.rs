@@ -14,7 +14,8 @@ pub fn source2(_py: Python, len: i32) -> PyResult<String> {
 
 pub fn sink2(_py: Python, datastr: String) -> PyResult<i32>{
     let mut i = 0i32;
-    for ch in datastr.chars().collect::<Vec<char>>() {
+    let datavec: Vec<char> = datastr.chars().collect();                    // utf8 --> unicode32 ... slow
+    for ch in datavec {
 	let d: i32 = unsafe { transmute::<char, i32>(ch) };                // d: i32
 	if d != i { println!("Error: compare failed ({} <> {})", i, d); }  // check
 	i+=1;

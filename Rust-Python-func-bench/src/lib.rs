@@ -7,6 +7,14 @@ use sourcesink1::{source1, sink1};
 mod sourcesink2;
 use sourcesink2::{source2, sink2};
 
+mod sourcesink3;
+use sourcesink3::{source3, sink3};
+
+mod sourcesink4;
+use sourcesink4::{source4, sink4};
+
+mod sourcesink5;
+use sourcesink5::{source5, sink5};
 
 
 py_module_initializer!(source_sink, initsource_sink, PyInit_source_sink, |py, m| {
@@ -19,5 +27,17 @@ py_module_initializer!(source_sink, initsource_sink, PyInit_source_sink, |py, m|
     // data: Rust String <---> String
     try!(m.add(py, "source2", py_fn!(py, source2(len: i32))));
     try!(m.add(py, "sink2"  , py_fn!(py, sink2(data: String))));
+
+    // data: Rust String <---> String ... block transmute
+    try!(m.add(py, "source3", py_fn!(py, source3(len: i32))));
+    try!(m.add(py, "sink3"  , py_fn!(py, sink3(data: String))));
+
+    // data: Rust String <---> String ... no utf8 ... 6 bit/char
+    try!(m.add(py, "source4", py_fn!(py, source4(len: i32))));
+    try!(m.add(py, "sink4"  , py_fn!(py, sink4(data: String))));
+
+    // data: Rust String <---> String ... no utf8 ... 6 bit/char & direct mapping
+    try!(m.add(py, "source5", py_fn!(py, source5(len: i32))));
+    try!(m.add(py, "sink5"  , py_fn!(py, sink5(data: String))));
     Ok(())
 });
