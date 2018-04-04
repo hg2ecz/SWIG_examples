@@ -1,0 +1,18 @@
+[package]
+name = "source_sink"
+version = "0.1.0"
+authors = ["Zsolt Krüpl <hg2ecz@ham.hu>"]
+
+[lib]
+name = "source_sink"
+crate-type = ["dylib"]
+
+[dependencies.cpython]
+version = "0.2.*"
+
+# Python3
+features = ["extension-module"]
+
+# Python2
+#default-features = false
+#features = ["python27-sys"]
