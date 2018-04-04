@@ -12,11 +12,8 @@ pub fn source1(_py: Python, len: i32) -> PyResult<Vec<i32>> {
 
 pub fn sink1(_py: Python, data: Vec<i32>) -> PyResult<i32>{
     let mut i = 0;
-    let datalen = data.len();
-    for d in data {
-	if d != i {
-	    println!("Az {}. adat eltér: {}, adathossz: {}", i, d, datalen);
-	}
+    for d in data {                                                        // d: i32
+	if d != i { println!("Error: compare failed ({} <> {})", i, d); }  // check
 	i+=1;
     }
     Ok(0)
