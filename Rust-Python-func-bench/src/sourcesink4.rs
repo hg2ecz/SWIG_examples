@@ -7,12 +7,13 @@ pub fn source4(_py: Python, len: i32) -> PyResult<String> {
     let mut datastr = String::new();
 
     for i in 0..len {
+	let d = i as u32;   // if need other conversion:  d = transmute::<f32, u32>(d_orig);
 	unsafe {
-	    datastr.push(transmute::<u32, char>(i as u32 >> (35-7)));
-	    datastr.push(transmute::<u32, char>((i as u32 >> (35-7-7)) & 0x7f));
-	    datastr.push(transmute::<u32, char>((i as u32 >> (35-7-7-7)) & 0x7f));
-	    datastr.push(transmute::<u32, char>((i as u32 >> (35-7-7-7-7)) & 0x7f));
-	    datastr.push(transmute::<u32, char>(i as u32 & 0x7f));
+	    datastr.push(transmute::<u32, char>(d >> (35-7)));
+	    datastr.push(transmute::<u32, char>((d >> (35-7-7)) & 0x7f));
+	    datastr.push(transmute::<u32, char>((d >> (35-7-7-7)) & 0x7f));
+	    datastr.push(transmute::<u32, char>((d >> (35-7-7-7-7)) & 0x7f));
+	    datastr.push(transmute::<u32, char>(d & 0x7f));
 	}
     }
     Ok(datastr)
