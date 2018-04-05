@@ -1,4 +1,4 @@
-// One string ... no unicode ... 7 bit/char
+// One string ... no unicode ... 7 bit/char ... transmute
 
 use std::mem::transmute;
 use cpython::{Python, PyResult};
