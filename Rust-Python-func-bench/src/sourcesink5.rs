@@ -1,4 +1,4 @@
-// One string ... no unicode ... 6 bit/char and direct mapping
+// One string ... no unicode ... 7 bit/char and direct mapping
 
 use std::ptr;
 use cpython::{Python, PyResult};
