@@ -9,16 +9,14 @@ pub fn source5(_py: Python, len: i32) -> PyResult<String> {
     let ptr_u8 = datastr.as_ptr() as *mut u8;
 
     for i in 0..len {
-	let mut seven = [0u32; 5];
-	seven[0] = i as u32 >> (35-7);
-	seven[1] = (i as u32 >> (35-7-7)) & 0x7f;
-	seven[2] = (i as u32 >> (35-7-7-7)) & 0x7f;
-	seven[3] = (i as u32 >> (35-7-7-7-7)) & 0x7f;
-	seven[4] = i as u32 & 0x7f;
-
-	for j in 0..5 {
-	    unsafe {ptr::write(ptr_u8.offset((5*i + j) as isize), seven[j as usize] as u8) };
-	}
+	let d = i as u32;   // if need other conversion:  d = transmute::<f32, u32>(d_orig);
+	unsafe {
+	    ptr::write(ptr_u8.offset((5*i + 0) as isize), (d >> (35-7)) as u8);
+	    ptr::write(ptr_u8.offset((5*i + 1) as isize), ((d >> (35-7-7)) & 0x7f) as u8);
+	    ptr::write(ptr_u8.offset((5*i + 2) as isize), ((d >> (35-7-7-7)) & 0x7f) as u8);
+	    ptr::write(ptr_u8.offset((5*i + 3) as isize), ((d >> (35-7-7-7-7)) & 0x7f) as u8);
+	    ptr::write(ptr_u8.offset((5*i + 4) as isize), (d & 0x7f) as u8);
+        }
     }
     Ok(datastr)
 }
