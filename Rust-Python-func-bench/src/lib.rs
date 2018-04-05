@@ -32,11 +32,11 @@ py_module_initializer!(source_sink, initsource_sink, PyInit_source_sink, |py, m|
     try!(m.add(py, "source3", py_fn!(py, source3(len: i32))));
     try!(m.add(py, "sink3"  , py_fn!(py, sink3(data: String))));
 
-    // data: Rust String <---> String ... no utf8 ... 6 bit/char
+    // data: Rust String <---> String ... no utf8 ... 7 bit/char
     try!(m.add(py, "source4", py_fn!(py, source4(len: i32))));
     try!(m.add(py, "sink4"  , py_fn!(py, sink4(data: String))));
 
-    // data: Rust String <---> String ... no utf8 ... 6 bit/char & direct mapping
+    // data: Rust String <---> String ... no utf8 ... 7 bit/char & direct mapping
     try!(m.add(py, "source5", py_fn!(py, source5(len: i32))));
     try!(m.add(py, "sink5"  , py_fn!(py, sink5(data: String))));
     Ok(())
