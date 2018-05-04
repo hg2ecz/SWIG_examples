@@ -6,7 +6,7 @@ OBJS=example_main.o
 TARGET=example_main
 
 all: $(OBJS)
-	$(CC) $(LDFLAGS) $(OBJS) -o $(TARGET)
+	$(CC) $(OBJS) $(LDFLAGS) -o $(TARGET)
 
 clean:
 	rm -f $(OBJS) $(TARGET)
