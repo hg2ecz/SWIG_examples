@@ -5,10 +5,10 @@ CXXFLAGS=-O2 -Wall -fpic
 LDFLAGS=-shared -s
 
 OBJS=$(PROJECT).o $(PROJECT)_c_wrapper.o
-TARGET=$(PROJECT).so
+TARGET=lib$(PROJECT).so
 
 all: $(OBJS)
-	$(CXX) $(LDFLAGS) $(OBJS) -o $(TARGET)
+	$(CXX) $(OBJS) $(LDFLAGS) -o $(TARGET)
 
 clean:
 	rm -f $(OBJS) $(TARGET)
