@@ -8,7 +8,7 @@ OBJS=$(PROJECT).o $(PROJECT)_c_wrapper.o
 TARGET=$(PROJECT).so
 
 all: $(OBJS)
-	$(CXX) $(LDFLAGS) $(OBJS) -o $(TARGET)
+	$(CXX) $(OBJS) $(LDFLAGS) -o $(TARGET)
 
 clean:
 	rm -f $(OBJS) $(TARGET)
