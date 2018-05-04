@@ -1,7 +1,7 @@
 #include <iostream>
 #include <dlfcn.h>
 
-#include "cpp_example.h"
+#include "cpp_example.hpp"
 using namespace std;
 
 // wrap into functional like behavior

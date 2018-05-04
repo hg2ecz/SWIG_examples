@@ -1,1 +1,0 @@
-../SWIG-C++/cpp_example.h
