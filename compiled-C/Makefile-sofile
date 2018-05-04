@@ -8,7 +8,7 @@ OBJS=$(PROJECT).o
 TARGET=lib$(PROJECT).so
 
 all: $(OBJS)
-	$(CC) $(LDFLAGS) $(OBJS) -o $(TARGET)
+	$(CC) $(OBJS) $(LDFLAGS) -o $(TARGET)
 
 clean:
 	rm -f $(OBJS) $(TARGET)
