@@ -1,0 +1,10 @@
+[package]
+name = "example_rust_main"
+version = "0.1.0"
+authors = ["Zsolt Krüpl <hg2ecz@ham.hu>"]
+links = "example"
+
+[dependencies]
+
+[build-dependencies]
+gcc = "0.3.*"
