@@ -6,4 +6,4 @@ authors = ["Zsolt Krüpl <hg2ecz@ham.hu>"]
 [dependencies]
 
 [build-dependencies]
-gcc = "0.3.*"
+cc = "1.0.*"

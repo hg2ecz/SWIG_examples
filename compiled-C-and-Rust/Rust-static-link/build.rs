@@ -1,7 +1,7 @@
-extern crate gcc;
+extern crate cc;
 
 fn main() {
-    gcc::Build::new()
+    cc::Build::new()
 	.file("src/c_example.c")
 	.flag("-Ofast")
 	.flag("-march=native")
